@@ -23,7 +23,7 @@
   gap: 1.5rem;
 }
 
-/* ---------- Base Card ---------- */
+
 /* ---------- Base Card ---------- */
 .card {
   background: rgba(255, 250, 240, 0.95); /* off-white parchment feel */
@@ -46,41 +46,33 @@
 }
 
 /* ---------- Card Content ---------- */
+.card-content {
+  text-align: center; 
+}
+
 .card-content h2.card-title {
-  font-family: "Georgia", serif;
-  font-size: 1.4rem;
-  margin: 0 0 0.5rem;
-  letter-spacing: 0.5px;
-  border-bottom: 2px solid rgba(202,163,74,0.35);
-  padding-bottom: 0.25rem;
-  color: inherit; /* will inherit house color */
+  font-family: "Cinzel Decorative", "Georgia", serif; 
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.card-content p {
-  margin: 0.35rem 0;
-  font-size: 0.95rem;
-  color: #2e2e2e; /* dark for readability */
-}
-
-/* ---------- House Themes ---------- */
-
-/* Gryffindor */
+/* House Themes - more prominent */
 .card.gryffindor {
   border-color: #ae0001;
+  background: rgba(255, 230, 230, 0.9);
 }
 .card.gryffindor .card-title {
   color: #ae0001;
 }
 .card.gryffindor p {
-  color: #4b0000;
-}
-.card.gryffindor:hover {
-  box-shadow: 0 14px 28px rgba(174,0,1,0.5);
+  color: #800000;
 }
 
-/* Slytherin */
 .card.slytherin {
   border-color: #2a623d;
+  background: rgba(220, 255, 230, 0.9);
 }
 .card.slytherin .card-title {
   color: #2a623d;
@@ -88,13 +80,10 @@
 .card.slytherin p {
   color: #0e4228;
 }
-.card.slytherin:hover {
-  box-shadow: 0 14px 28px rgba(42,98,61,0.5);
-}
 
-/* Ravenclaw */
 .card.ravenclaw {
   border-color: #0e1a40;
+  background: rgba(230, 230, 255, 0.9);
 }
 .card.ravenclaw .card-title {
   color: #0e1a40;
@@ -102,13 +91,10 @@
 .card.ravenclaw p {
   color: #1c2e5c;
 }
-.card.ravenclaw:hover {
-  box-shadow: 0 14px 28px rgba(14,26,64,0.5);
-}
 
-/* Hufflepuff */
 .card.hufflepuff {
   border-color: #ffdb00;
+  background: rgba(255, 255, 200, 0.9);
 }
 .card.hufflepuff .card-title {
   color: #b8860b;
@@ -116,6 +102,14 @@
 .card.hufflepuff p {
   color: #665200;
 }
-.card.hufflepuff:hover {
-  box-shadow: 0 14px 28px rgba(255,219,0,0.4);
+
+/* Make wizard images uniform */
+.card .wizard-image {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0.5rem auto;
+  display: block;
 }
+

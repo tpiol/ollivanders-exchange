@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import requests
 
 from .models import Wizard
@@ -47,7 +47,8 @@ def choose_wizard(request):
             return render(request, 'wizards/detail.html', {'wizard': wizard})
 
     return render(request, 'main_app/wizard_form.html', {'all_wizards': uncollected_wizards})
+    
 
-
-
-  
+class WizardDelete(DeleteView):
+    model = Wizard
+    success_url = '/wizards/'

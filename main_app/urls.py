@@ -7,4 +7,5 @@ urlpatterns = [
     path('wizards/', views.wizard_index, name='wizard-index'),
     path('wizards/<int:wizard_id>/', views.wizard_detail, name='wizard-detail'),
     path('wizards/choose/', views.choose_wizard, name='choose-wizard'),
+    path('wizards/<int:pk>/delete/', views.WizardDelete.as_view(), name='wizard-delete'),
 ]

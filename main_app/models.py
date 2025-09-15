@@ -11,7 +11,7 @@ HOUSES = (
 
 class Wizard(models.Model):
     name = models.CharField(max_length=100)
-    image = models.CharField(max_length=100, blank = True, null = True)
+    image = models.URLField()
     house = models.CharField(max_length=1, choices=HOUSES, default=HOUSES[0][0])
     dateOfBirth = models.CharField(max_length=50, blank=True, null=True)
     patronus = models.CharField(max_length=50)

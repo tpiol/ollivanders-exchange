@@ -10,11 +10,16 @@
   <section class="wizard-container">
     <div class="wizard-details {{ wizard.house|lower }}">
       <h1>{{ wizard.name }}</h1>
-      <img src="{{ wizard.image }}" alt="{{ wizard.name }}">
+      <p><img src="{{ wizard.image }}" alt="{{ wizard.name }}"/></p>
       <p>Date of Birth: {{ wizard.dateOfBirth }}</p>
       <p>House: {{ wizard.get_house_display }}</p>
       <p>Patronus: {{ wizard.patronus }}</p>
     </div>
+
+    <div class="wizard-actions">
+    <a href="{% url 'wizard-delete' wizard.id %}" class="btn danger">Delete</a>
+  </div>
+
   </section>
 </main>
 {% endblock %}
