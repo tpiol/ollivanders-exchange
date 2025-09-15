@@ -10,8 +10,10 @@
   <section class="wizard-container">
     <div class="wizard-details {{ wizard.house|lower }}">
       <h1>{{ wizard.name }}</h1>
-      <p>Age: {{ wizard.age }}</p>
-      <p>House: {{ wizard.house }}</p>
+      <img src="{{ wizard.image }}" alt="{{ wizard.name }}">
+      <p>Date of Birth: {{ wizard.dateOfBirth }}</p>
+      <p>House: {{ wizard.get_house_display }}</p>
+      <p>Patronus: {{ wizard.patronus }}</p>
     </div>
   </section>
 </main>

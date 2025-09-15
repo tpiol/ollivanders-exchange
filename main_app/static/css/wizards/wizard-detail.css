@@ -1,65 +1,64 @@
 /* ---------- Wizard Container ---------- */
 .wizard-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 4rem 2rem;
-  min-height: 80vh;
-  width: 100%; /* add this */
-  background: linear-gradient(135deg, #2d2d2d, #4b2e2e);
-  color: #f4f1e9;
-}
-
-/* ---------- Wizard Details Card ---------- */
-.wizard-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
   background: #fffaf0;
-  color: #2e2e2e; 
-  border: 2px solid #d2b48c;
-  border-radius: 14px;
-  padding: 2rem 2.5rem;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.wizard-details:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.5);
-}
-
-/* ---------- Wizard Name ---------- */
-.wizard-details h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  color: #2d2d2d; 
-  font-family: "Georgia", serif;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+/* ---------- Wizard Image ---------- */
+.wizard-details img {
+  width: 250px;         
+  height: auto;         
+  border-radius: 12px;
+  margin: 1rem 0;
+  object-fit: cover;   
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* ---------- Wizard Info ---------- */
-.wizard-details p {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
+.wizard-details h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
   color: #333;
 }
 
-/* ---------- House Colors ---------- */
-
-
-.wizard-details.gryffindor {
-  border-color: #ae0001;
+.wizard-details p {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+  color: #555;
 }
 
-.wizard-details.slytherin {
-  border-color: #2a623d;
+/* ---------- House Color Highlights ---------- */
+.wizard-details.g {
+  border-left: 5px solid #ae0001; 
 }
 
-.wizard-details.ravenclaw {
-  border-color: #0e1a40;
+.wizard-details.s {
+  border-left: 5px solid #2a623d; 
 }
 
-.wizard-details.hufflepuff {
-  border-color: #ffdb00;
+.wizard-details.r {
+  border-left: 5px solid #222f5b; 
+}
+
+.wizard-details.h {
+  border-left: 5px solid #ecb939; 
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .wizard-details img {
+    width: 100%;
+    max-width: 200px;
+  }
+  .wizard-container {
+    padding: 1rem;
+  }
 }
