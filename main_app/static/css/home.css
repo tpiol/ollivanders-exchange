@@ -1,0 +1,58 @@
+/* ---------- Home Section ---------- */
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5rem 2rem;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #2d2d2d, #4b2e2e); /* dark magical gradient */
+  color: #f4f1e9;
+  position: relative;
+}
+
+/* Content inside home section */
+.home-content {
+  max-width: 700px;
+}
+
+/* Logo */
+.hero-logo {
+  width: 120px;
+  margin-bottom: 2rem;
+}
+
+/* Main heading */
+.home-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-family: "Georgia", serif;
+  color: #ffd700; /* magical gold */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* Paragraph text */
+.home-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  color: #eaeaea;
+}
+
+/* Call-to-action button */
+.btn-primary {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  background-color: #b8860b; /* golden accent */
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ffd700;
+  transform: translateY(-2px);
+}

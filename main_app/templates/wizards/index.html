@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/wizards/wizard-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Wizards</h1>
+</section>
+
+<section class="card-container">
+  {% for wizard in wizards %}
+  <div class="card {{ wizard.house|lower }}">
+    <div class="card-content">
+      <h2 class="card-title">{{ wizard.name }}</h2>
+      <p>Age: {{ wizard.age }} </p>
+      <p>House: {{ wizard.house }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

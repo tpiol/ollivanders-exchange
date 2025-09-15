@@ -1,5 +1,134 @@
 /* static/css/base.css  */
 
-body {
-  background-color: red;
+/* ---------- Base Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: "Garamond", "Times New Roman", serif;
+  background: #f4f1e9; /* parchment background */
+  color: #2e2e2e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+header {
+  background: #2d2d2d; /* dark wizarding gray */
+  color: #f4f1e9;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid #b8860b; /* golden trim */
+}
+
+.header-logo-container {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #f4f1e9;
+}
+
+/* ---------- Navigation ---------- */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #f4f1e9;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffd700; /* magical gold */
+}
+
+/* ---------- Main Layout ---------- */
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* ---------- Page Header ---------- */
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: #2d2d2d;
+  border-bottom: 3px solid #b8860b;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* ---------- Card Container ---------- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- Card Styling ---------- */
+.card {
+  background: #fffaf0;
+  border: 2px solid #d2b48c;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #4b2e2e;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+/* ---------- Buttons ---------- */
+button, .btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background: #4b2e2e;
+  color: #f4f1e9;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background: #b8860b;
+}
+
+/* ---------- Footer (optional if added later) ---------- */
+footer {
+  background: #2d2d2d;
+  color: #f4f1e9;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: auto;
 }

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<section class="home">
+  <div class="home-content">
+    <img
+      src="{% static '' %}"
+      alt="Ollivander's Exchange Logo"
+      class="hero-logo"
+    />
+    <h1>Welcome to Ollivander’s Exchange</h1>
+    <p>
+      Where every wizard finds their wand, and every wand chooses its wizard.  
+      Trade, discover, and master spells in the magical marketplace.
+    </p>
+    <a href="/wizards" class="btn btn-primary">Enter the Exchange</a>
+  </div>
+
+</section>
+
+{% endblock %}

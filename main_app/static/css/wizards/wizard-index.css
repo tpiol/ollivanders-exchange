@@ -1,0 +1,122 @@
+/* ===========================
+   Wizard Index Styling
+   File: wizard-index.css
+   =========================== */
+
+/* ---------- Page Header ---------- */
+.page-header {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.page-header h1 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 2.2rem;
+  color: #caa34a; /* golden wand accent */
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  margin: 0;
+}
+
+/* ---------- Card Container ---------- */
+.card-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- Base Card ---------- */
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(202,163,74,0.25);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #eaeaea;
+  backdrop-filter: blur(6px);
+}
+
+/* Hover “magic glow” */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(202,163,74,0.35);
+  border-color: #caa34a;
+}
+
+/* ---------- Card Content ---------- */
+.card-content {
+  text-align: left;
+}
+
+/* Wizard name */
+.card-title {
+  font-family: "Georgia", serif;
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  color: #f0e6d2;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(202,163,74,0.35);
+  padding-bottom: 0.25rem;
+}
+
+/* Wizard info text */
+.card-content p {
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+  color: #cfd8e3;
+}
+
+/* Subtle hover line effect on text */
+.card-content p:hover {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(202,163,74,0.5);
+}
+
+/* ---------- House Themes ---------- */
+
+/* Gryffindor */
+.card.gryffindor {
+  border-color: #ae0001;
+}
+.card.gryffindor .card-title {
+  color: #ffcc00; /* gold */
+}
+.card.gryffindor:hover {
+  box-shadow: 0 14px 28px rgba(174,0,1,0.5);
+}
+
+/* Slytherin */
+.card.slytherin {
+  border-color: #2a623d;
+}
+.card.slytherin .card-title {
+  color: #aaaaaa; /* silver */
+}
+.card.slytherin:hover {
+  box-shadow: 0 14px 28px rgba(42,98,61,0.5);
+}
+
+/* Ravenclaw */
+.card.ravenclaw {
+  border-color: #0e1a40;
+}
+.card.ravenclaw .card-title {
+  color: #946b2d; /* bronze */
+}
+.card.ravenclaw:hover {
+  box-shadow: 0 14px 28px rgba(14,26,64,0.5);
+}
+
+/* Hufflepuff */
+.card.hufflepuff {
+  border-color: #ffdb00;
+}
+.card.hufflepuff .card-title {
+  color: #372e29; /* black/brown accent */
+}
+.card.hufflepuff:hover {
+  box-shadow: 0 14px 28px rgba(255,219,0,0.4);
+}
