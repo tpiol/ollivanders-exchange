@@ -8,6 +8,8 @@
 {% block content %}
 <main> 
   <section class="wizard-container">
+
+    
     <div class="wizard-details {{ wizard.house|lower }}">
       <h1>{{ wizard.name }}</h1>
       <p><img src="{{ wizard.image }}" alt="{{ wizard.name }}"/></p>
@@ -16,9 +18,56 @@
       <p>Patronus: {{ wizard.patronus }}</p>
     </div>
 
+   
     <div class="wizard-actions">
-    <a href="{% url 'wizard-delete' wizard.id %}" class="btn danger">Delete</a>
-  </div>
+      <a href="{% url 'wizard-delete' wizard.id %}" class="btn danger">Delete</a>
+    </div>
+
+   
+    <div class="wand-container">
+      <section class="wands">
+
+        <h2>Wand</h2>
+
+        {% if wizard.wand_set.exists %}
+          <table>
+            <thead>
+              <tr>
+                <th>Wood</th>
+                <th>Core</th>
+                <th>Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for wand in wizard.wand_set.all %}
+                <tr>
+                  <td>{{ wand.get_wood_display }}</td>
+                  <td>{{ wand.get_core_display }}</td>
+                  <td>{{ wand.length }}"</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <div class="subsection-content">
+            <p>✨ No wand assigned yet!</p>
+
+            <h3>Add a Wand</h3>
+            <form
+              action="{% url 'add-wand' wizard.id %}"
+              method="post"
+              class="subsection-content"
+              autocomplete="off"
+            >
+              {% csrf_token %} 
+              {{ wand_form.as_p }}
+              <button type="submit" class="btn submit">Add Wand</button>
+            </form>
+          </div>
+        {% endif %}
+
+      </section>
+    </div>
 
   </section>
 </main>

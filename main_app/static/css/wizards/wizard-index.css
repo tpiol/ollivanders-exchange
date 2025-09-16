@@ -8,7 +8,7 @@
 .page-header h1 {
   font-family: "Georgia", "Times New Roman", serif;
   font-size: 2.2rem;
-  color: #caa34a; /* golden wand accent */
+  color: #caa34a; 
   text-shadow: 0 2px 6px rgba(0,0,0,0.4);
   margin: 0;
 }
@@ -26,7 +26,7 @@
 
 /* ---------- Base Card ---------- */
 .card {
-  background: rgba(255, 250, 240, 0.95); /* off-white parchment feel */
+  background: rgba(255, 250, 240, 0.95); 
   border: 2px solid #d2b48c;
   border-radius: 14px;
   padding: 1.25rem;
@@ -58,7 +58,7 @@
   text-transform: uppercase;
 }
 
-/* House Themes - more prominent */
+/* House Themes  */
 .card.gryffindor {
   border-color: #ae0001;
   background: rgba(255, 230, 230, 0.9);

@@ -1,64 +1,157 @@
 /* ---------- Wizard Container ---------- */
 .wizard-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 2rem auto;
-  padding: 1rem 2rem;
-  background: #fffaf0;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 2rem;
+  background: #fdf8e7; 
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  border: 2px solid #d4af37; 
+  font-family: "Garamond", "Georgia", serif;
   text-align: center;
 }
 
 /* ---------- Wizard Image ---------- */
 .wizard-details img {
-  width: 250px;         
-  height: auto;         
+  width: 250px;
   border-radius: 12px;
-  margin: 1rem 0;
-  object-fit: cover;   
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin: 1.5rem 0;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  border: 3px solid #d4af37;
 }
 
 /* ---------- Wizard Info ---------- */
 .wizard-details h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #2c1a10;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  font-family: "Cinzel Decorative", "Georgia", serif;
 }
 
 .wizard-details p {
-  font-size: 1.1rem;
-  margin: 0.3rem 0;
-  color: #555;
+  font-size: 1.2rem;
+  margin: 0.4rem 0;
+  color: #4a3b2c;
 }
 
-/* ---------- House Color Highlights ---------- */
-.wizard-details.g {
-  border-left: 5px solid #ae0001; 
+/* ---------- House Color Borders ---------- */
+.wizard-details.gryffindor {
+  border-left: 8px solid #ae0001;
+}
+.wizard-details.slytherin {
+  border-left: 8px solid #2a623d;
+}
+.wizard-details.ravenclaw {
+  border-left: 8px solid #222f5b;
+}
+.wizard-details.hufflepuff {
+  border-left: 8px solid #ecb939;
 }
 
-.wizard-details.s {
-  border-left: 5px solid #2a623d; 
+/* ---------- Section Titles ---------- */
+.subsection-title h2,
+h3 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+  color: #2c1a10;
+  text-align: center;
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 0.2rem;
 }
 
-.wizard-details.r {
-  border-left: 5px solid #222f5b; 
+/* ---------- Forms ---------- */
+.subsection-content {
+  margin: 1rem auto 2rem;
+  max-width: 500px;
+  text-align: left;
+  padding: 1.5rem;
+  border: 2px dashed #d4af37;
+  border-radius: 12px;
+  background: #fffdf6;
 }
 
-.wizard-details.h {
-  border-left: 5px solid #ecb939; 
+.subsection-content p {
+  margin: 0.6rem 0;
+}
+
+.subsection-content label {
+  font-weight: bold;
+  color: #3d2c1e;
+}
+
+.btn.submit {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* ---------- Wand Table ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background: #fefcf5;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+thead {
+  background: #d4af37;
+  color: #fff;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1.2rem;
+}
+
+th, td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7f3e9;
+}
+
+tbody tr:hover {
+  background: #fff3c6;
+  transition: background 0.2s ease;
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .wizard-container {
+    padding: 1rem;
+  }
   .wizard-details img {
     width: 100%;
     max-width: 200px;
   }
-  .wizard-container {
-    padding: 1rem;
+  table, thead, tbody, th, td, tr {
+    display: block;
+    text-align: right;
+  }
+  th {
+    background: none;
+    color: #2c1a10;
+    text-align: left;
+  }
+  td {
+    padding: 0.5rem 0;
+    border: none;
   }
 }

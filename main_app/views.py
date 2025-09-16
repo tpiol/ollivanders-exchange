@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import requests
-
 from .models import Wizard
+from .forms import WandForm
 
 
 def home(request):
@@ -18,7 +18,8 @@ def wizard_index(request):
 
 def wizard_detail(request, wizard_id):
     wizard = Wizard.objects.get(id=wizard_id)
-    return render(request, 'wizards/detail.html', {'wizard': wizard})
+    wand_form = WandForm()
+    return render(request, 'wizards/detail.html', {'wizard': wizard, 'wand_form': wand_form})
 
 def choose_wizard(request):
 
@@ -52,3 +53,13 @@ def choose_wizard(request):
 class WizardDelete(DeleteView):
     model = Wizard
     success_url = '/wizards/'
+
+def add_wand(request, wizard_id):
+    
+    form = WandForm(request.POST)
+    
+    if form.is_valid():
+        new_wand = form.save(commit=False)
+        new_wand.wizard_id = wizard_id
+        new_wand.save()
+    return redirect('wizard-detail', wizard_id=wizard_id)
