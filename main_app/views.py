@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import requests
-from .models import Wizard
+from .models import Wizard, Wand
 from .forms import WandForm
 
 
@@ -63,3 +63,12 @@ def add_wand(request, wizard_id):
         new_wand.wizard_id = wizard_id
         new_wand.save()
     return redirect('wizard-detail', wizard_id=wizard_id)
+
+class WandUpdate(UpdateView):
+    model = Wand
+    
+    fields = ['core', 'wood', 'length']
+
+class WandDelete(DeleteView):
+    model = Wand
+    success_url = '/wizard-detail/'

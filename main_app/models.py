@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -87,3 +88,6 @@ class Wand(models.Model):
     
     def __str__(self):
         return f"{self.length}\" {self.get_wood_display()} with {self.get_core_display()}"
+    
+    def get_absolute_url(self):
+        return reverse('wizard-detail', kwargs={'wizard_id': self.wizard.id})

@@ -19,11 +19,6 @@
     </div>
 
    
-    <div class="wizard-actions">
-      <a href="{% url 'wizard-delete' wizard.id %}" class="btn danger">Delete</a>
-    </div>
-
-   
     <div class="wand-container">
       <section class="wands">
 
@@ -36,6 +31,8 @@
                 <th>Wood</th>
                 <th>Core</th>
                 <th>Length</th>
+                <th>edit</th>
+                <th>delete</th>
               </tr>
             </thead>
             <tbody>
@@ -44,15 +41,21 @@
                   <td>{{ wand.get_wood_display }}</td>
                   <td>{{ wand.get_core_display }}</td>
                   <td>{{ wand.length }}"</td>
+                  <td><div class="wand-actions">
+                 <a href="{% url 'wand-update' wand.id %}" class="btn danger">edit</a>
+                </div></td>
+                  <td> <div class="wand-actions">
+                 <a href="{% url 'wand-delete' wand.id %}" class="btn danger">Delete</a>
+                </div></td>
                 </tr>
               {% endfor %}
             </tbody>
+        
           </table>
         {% else %}
           <div class="subsection-content">
-            <p>✨ No wand assigned yet!</p>
 
-            <h3>Add a Wand</h3>
+            <h3>✨ No wand assigned yet! Add a Wand</h3>
             <form
               action="{% url 'add-wand' wizard.id %}"
               method="post"
