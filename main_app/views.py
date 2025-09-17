@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import requests
-from .models import Wizard, Wand
+from .models import Wizard, Wand, Spell
 from .forms import WandForm
 
 
@@ -66,9 +66,53 @@ def add_wand(request, wizard_id):
 
 class WandUpdate(UpdateView):
     model = Wand
-    
     fields = ['core', 'wood', 'length']
 
 class WandDelete(DeleteView):
     model = Wand
-    success_url = '/wizard-detail/'
+    success_url = '/wizards/'
+
+# def spell_index(request):
+#     spells = Spell.objects.all()
+    
+#     if 'name' in request.GET:
+#         name = request.GET['name']
+#         url = 'https://hp-api.onrender.com/api/spells' 
+#         response = requests.get(url)
+#         data = response.json()
+#         spells = data['spells']
+
+#         for i in spells:
+#             spell_data = Spell(
+#                 name = i['spell'],
+#                 description = i['description']
+#             )
+#             spell_data.save()
+#             all_spells = Spell.objects.all().order_by('-id')
+
+#         return render(request, 'spells/index.html', {'spells': spells})
+
+def spell_index(request):
+
+    if Spell.objects.count() == 0:
+        url = 'https://hp-api.onrender.com/api/spells' 
+        response = requests.get(url)
+        if response.status_code == 200:
+            for i in response.json():
+                if not Spell.objects.filter(name=i.get('name')).exists():
+                    Spell.objects.create(
+                        name=i.get('name', 'Unknown'),
+                        description= i.get('description')
+                    )
+
+    uncollected_spells = Spell.objects.filter(is_collected=False).order_by('name')
+
+    if request.method == 'POST':
+        spell_id = request.POST.get('spell')
+        if spell_id:
+            spell = Spell.objects.get(id=spell_id)
+            spell.is_collected = True
+            spell.save()
+            return render(request, 'spells/index.html', {'spell': spell})
+
+    return render(request, 'spells/index.html', {'all_spells': uncollected_spells})

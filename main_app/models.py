@@ -65,7 +65,19 @@ CORES = (
     ("JA", "Jackalope Antler"),
     ("BH", "Basilisk Horn"),
     ("SH", "Snallygaster Heartstring"),
+
 )
+
+class Spell(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=500)
+    is_collected = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("spell_detail", kwargs={"pk": self.id})
 
 class Wizard(models.Model):
     name = models.CharField(max_length=100)
@@ -74,6 +86,7 @@ class Wizard(models.Model):
     dateOfBirth = models.CharField(max_length=50, blank=True, null=True)
     patronus = models.CharField(max_length=50)
     is_collected = models.BooleanField(default=False)
+    spells = models.ManyToManyField(Spell)
 
     def __str__(self):
         return self.name
@@ -91,3 +104,8 @@ class Wand(models.Model):
     
     def get_absolute_url(self):
         return reverse('wizard-detail', kwargs={'wizard_id': self.wizard.id})
+    
+
+
+    
+        

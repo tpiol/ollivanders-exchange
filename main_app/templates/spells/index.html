@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/spells/spell-index.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>📜 The Hogwarts Spellbook</h1>
+</section>
+
+<section class="spell-controls">
+  <form method="get" action="{% url 'spell-index' %}" class="search-form">
+    <input type="text" name="q" placeholder="Search for a spell..." />
+    <button type="submit" class="btn secondary">🔍 Search</button>
+  </form>
+</section>
+
+<section class="card-container">
+  {% for spell in all_spells %}
+    <div class="card spell-card">
+      <div class="card-content">
+        <h2>{{ spell.name }}</h2>
+        <p>{{ spell.description }}</p>
+        <div class="card-actions">
+          <form action="{% url 'spell-index' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="spell_name" value="{{ spell.name }}">
+            <input type="hidden" name="spell_description" value="{{ spell.description }}">
+            <button type="submit" class="btn submit">✨Add to Spellbook✨ </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No spells found yet! Try searching above or check back later.</p>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Choose a Spell</h1>
+  </div>
+
+
+  <form action="" method="post" class="form-container" autocomplete="off">
+    {% csrf_token %}
+    <label for="spell">Select a spell:</label>
+    <select name="spell" id="spell">
+      {% for spell in all_spells %}
+        <option value="{{ spell.id }}">{{ spell.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn submit">Submit!</button>
+  </form>
+
+  {% if selected_spell %}
+    <div class="spell-details">
+      <h2>{{ selected_spell.name }}</h2>
+      <p>{{ selected_spell.description }}</p>
+    </div>
+  {% endif %}
+{% endblock %}

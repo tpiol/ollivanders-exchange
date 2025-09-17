@@ -10,4 +10,5 @@ urlpatterns = [
     path('wands/<int:pk>/delete/', views.WandDelete.as_view(), name='wand-delete'),
     path('wands/<int:pk>/update/', views.WandUpdate.as_view(), name='wand-update'),
     path('wizards/<int:wizard_id>/add-wand/', views.add_wand, name='add-wand'),
+    path('spells/', views.spell_index, name='spell-index'),
 ]
