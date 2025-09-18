@@ -1,0 +1,29 @@
+
+.page-content {
+    padding: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif; 
+    color: #333; 
+    background: #fafafa; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+h1 {
+    font-family: 'Georgia', serif; 
+    color: #8b5e3c; 
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+h1::after {
+    content: ' ✨';
+}
+
+.page-content a {
+    color: #8b5e3c;
+    text-decoration: underline;
+}

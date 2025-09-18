@@ -1,0 +1,24 @@
+#spotify-player {
+  position: fixed;
+  bottom: 20px;           
+  left: 50%;              
+  transform: translateX(-50%); 
+  z-index: 9999;
+  background: rgba(15, 12, 40, 0.8);
+  padding: 6px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+#spotify-player iframe {
+  width: 300px;
+  height: 80px;
+  border-radius: 12px;
+  border: 2px solid #d4af37;
+}
+
+#spotify-player:hover {
+  box-shadow: 0 0 16px #d4af37;
+  transition: box-shadow 0.3s ease;
+}

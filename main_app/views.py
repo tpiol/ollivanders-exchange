@@ -85,10 +85,6 @@ def choose_wizard(request):
     return render(request, 'main_app/wizard_form.html', {'all_wizards': uncollected_wizards})
 
 
-class WizardDelete(LoginRequiredMixin, DeleteView):
-    model = Wizard
-    success_url = '/wizards/'
-
 @login_required
 def add_wand(request, wizard_id):
     form = WandForm(request.POST)
