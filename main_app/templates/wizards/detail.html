@@ -46,8 +46,8 @@
 
         <div class="wand-actions">
           {% for wand in wizard.wand_set.all %}
-            <a href="{% url 'wand-update' wand.id %}" class="btn edit">Edit</a>
-            <a href="{% url 'wand-delete' wand.id %}" class="btn danger">Delete</a>
+            <a href="{% url 'wand-update' wand.id %}" class="btn edit">edit wand</a>
+            <a href="{% url 'wand-delete' wand.id %}" class="btn danger">delete wand</a>
           {% endfor %}
         </div>
       {% else %}

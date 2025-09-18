@@ -9,19 +9,27 @@
 
 <section class="home">
   <div class="home-content">
-    <img
-      src="{% static '' %}"
-      alt="Ollivander's Exchange Logo"
-      class="hero-logo"
-    />
     <h1>Welcome to Ollivander’s Exchange</h1>
     <p>
-      Where every wizard finds their wand, and every wand chooses its wizard.  
-      Trade, discover, and master spells in the magical marketplace.
+      Where every wizard finds their wand, and every wand chooses its wizard. </p> 
+      <p>Learn and master spells in the magical marketplace.
     </p>
-    <a href="/wizards" class="btn btn-primary">Enter the Exchange</a>
-  </div>
 
+    <div class="login-divider"><span></span></div>
+
+    {% if user.is_authenticated %}
+      <a href="/wizards" class="btn btn-primary">Enter the Exchange</a>
+    {% else %}
+      <p class="login-prompt">Please login to enter the Exchange</p>
+      <form action="{% url 'home' %}" method="post" class="login">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn submit">Login</button>
+      </form>
+    {% endif %}
+
+  </div>
 </section>
 
 {% endblock %}

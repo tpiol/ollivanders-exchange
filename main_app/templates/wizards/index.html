@@ -11,11 +11,11 @@
 
 <section class="card-container">
   {% for wizard in wizards %}
-  <a href="{% url 'wizard-detail' wizard.id %}" class="card {{ wizard.house|lower }}">
+  <a href="{% url 'wizard-detail' wizard.id %}" class="card {{ wizard.get_house_display|lower }}">
     <div class="card-content">
       <h2 class="card-title">{{ wizard.name }}</h2>
       <img src="{{ wizard.image }}" alt="{{ wizard.name }}" class="wizard-image" />
-      <p>{{ wizard.get_house_display }}</p>
+      
     </div>
   </a>
   {% endfor %}

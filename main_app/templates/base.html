@@ -18,11 +18,23 @@
       </div>
       <nav>
         <ul>
+          {% if user.is_authenticated %}
           <li><a href="/">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'wizard-index' %}">All Wizards</a></li>
           <li><a href="{% url 'choose-wizard' %}">Choose a Wizard</a></li>
           <li><a href="{% url 'spell-index' %}">Spellbook</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+          {% else %}
+          <li><a href="/">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>

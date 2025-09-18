@@ -32,14 +32,14 @@
 
 .wizard-card.slytherin { 
   background: linear-gradient(135deg, #2a6b3b, #4ca06b); /
-  --accent: #4ca06b; 
+  --accent: #d4af37;
   color: #fff; 
 }
 
 
 .wizard-card.ravenclaw { 
-  background: linear-gradient(135deg, #0e1a40, #222f5b); 
-  --accent: #222f5b; 
+   background: linear-gradient(135deg, #1e2a60, #3a4f8c); 
+  --accent: #d4af37; 
   color: #fff; 
 }
 

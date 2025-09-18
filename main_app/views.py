@@ -3,7 +3,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import requests
 from .models import Wizard, Wand, Spell
 from .forms import WandForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+class Home(LoginView):
+    template_name = 'home.html'
 
 def home(request):
     return render(request, 'home.html')
@@ -12,16 +19,15 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-
+@login_required
 def wizard_index(request):
-    collected = Wizard.objects.filter(is_collected=True).order_by('name')
+    collected = Wizard.objects.filter(is_collected=True, user=request.user).order_by('name')
     return render(request, 'wizards/index.html', {'wizards': collected})
 
-
+@login_required
 def wizard_detail(request, wizard_id):
     wizard = Wizard.objects.get(id=wizard_id)
 
-    # Load spells from API if DB is empty
     if Spell.objects.count() == 0:
         url = 'https://hp-api.onrender.com/api/spells'
         response = requests.get(url)
@@ -33,7 +39,6 @@ def wizard_detail(request, wizard_id):
                         description=i.get('description', 'No description available')
                     )
 
-    # Handle POST: add spell to wizard
     if request.method == 'POST':
         spell_id = request.POST.get('spell')
         if spell_id:
@@ -50,7 +55,7 @@ def wizard_detail(request, wizard_id):
         'all_spells': all_spells,
     })
 
-
+@login_required
 def choose_wizard(request):
     if Wizard.objects.count() == 0:
         url = 'https://hp-api.onrender.com/api/characters'
@@ -70,20 +75,21 @@ def choose_wizard(request):
 
     if request.method == 'POST':
         wizard_id = request.POST.get('wizard')
-        if wizard_id:
+        if wizard_id and request.user.is_authenticated:
             wizard = Wizard.objects.get(id=wizard_id)
             wizard.is_collected = True
+            wizard.user = request.user
             wizard.save()
             return render(request, 'wizards/detail.html', {'wizard': wizard})
 
     return render(request, 'main_app/wizard_form.html', {'all_wizards': uncollected_wizards})
 
 
-class WizardDelete(DeleteView):
+class WizardDelete(LoginRequiredMixin, DeleteView):
     model = Wizard
     success_url = '/wizards/'
 
-
+@login_required
 def add_wand(request, wizard_id):
     form = WandForm(request.POST)
 
@@ -94,16 +100,16 @@ def add_wand(request, wizard_id):
     return redirect('wizard-detail', wizard_id=wizard_id)
 
 
-class WandUpdate(UpdateView):
+class WandUpdate(LoginRequiredMixin, UpdateView):
     model = Wand
     fields = ['core', 'wood', 'length']
 
 
-class WandDelete(DeleteView):
+class WandDelete(LoginRequiredMixin, DeleteView):
     model = Wand
     success_url = '/wizards/'
 
-
+@login_required
 def spell_index(request):
     if Spell.objects.count() == 0:
         url = 'https://hp-api.onrender.com/api/spells'
@@ -133,3 +139,20 @@ def spell_index(request):
             all_spells = Spell.objects.filter(is_collected=False).order_by('name')
 
     return render(request, 'spells/index.html', {'all_spells': all_spells, 'query': query})
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            
+            user = form.save()
+           
+            login(request, user)
+            return redirect('wizard-index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
+  

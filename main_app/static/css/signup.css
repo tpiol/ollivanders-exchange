@@ -1,0 +1,109 @@
+.signup-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f5e1 url('/static/images/parchment-texture.jpg') repeat;
+  font-family: 'Garamond', serif;
+}
+
+.signup-card {
+  background: #fffaf0;
+  border: 3px solid #4b2e2b;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: 6px 6px 20px rgba(0,0,0,0.3);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.signup-card h1 {
+  font-family: 'Cinzel Decorative', serif;
+  color: #4b2e2b;
+  text-shadow: 2px 2px #d8c58f;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.form-field label {
+  font-weight: bold;
+  color: #4b2e2b;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 50px;
+  border: 2px solid #4b2e2b;
+  background: #fffaf0;
+  font-family: 'Garamond', serif;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: #8b5e3c;
+  box-shadow: 0 0 8px 2px rgba(139,94,60,0.5);
+  background: #fffbe6;
+}
+
+.helptext {
+  font-size: 0.85rem;
+  color: #6b4f3c;
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
+.error {
+  color: #c0392b;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.btn.submit {
+  background: #4b2e2b;
+  color: #fffaf0;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn.submit:hover {
+  background: #8b5e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #4b2e2b;
+  text-align: center;
+}
+
+.login-link a {
+  color: #8b5e3c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
