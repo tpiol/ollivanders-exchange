@@ -1,157 +1,287 @@
-/* ---------- Wizard Container ---------- */
-.wizard-container {
-  max-width: 900px;
+/* ---------- Page Layout ---------- */
+.wizard-page {
+  max-width: 1100px;
   margin: 2rem auto;
+  padding: 1rem;
+  font-family: "Garamond", serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* ---------- Wizard Card ---------- */
+.wizard-card {
+  border-radius: 20px;
   padding: 2rem;
-  background: #fdf8e7; 
-  border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-  border: 2px solid #d4af37; 
-  font-family: "Garamond", "Georgia", serif;
+  position: relative;
+  overflow: hidden;
+  color: var(--accent, #2c1a10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-/* ---------- Wizard Image ---------- */
-.wizard-details img {
-  width: 250px;
+/* ---------- Wizard Card with House Colors ---------- */
+.wizard-card.gryffindor { 
+  background: linear-gradient(135deg, #740001, #ae0001); 
+  --accent: #d4af37; 
+  color: #fff; 
+}
+
+.wizard-card.slytherin { 
+  background: linear-gradient(135deg, #2a6b3b, #4ca06b); /
+  --accent: #4ca06b; 
+  color: #fff; 
+}
+
+
+.wizard-card.ravenclaw { 
+  background: linear-gradient(135deg, #0e1a40, #222f5b); 
+  --accent: #222f5b; 
+  color: #fff; 
+}
+
+.wizard-card.hufflepuff { 
+  background: linear-gradient(135deg, #f7e38f, #f0d56d); 
+  --accent: #d4af37; 
+  color: #2c1a10; 
+}
+
+.wizard-card h1,
+.wizard-card p,
+.wizard-info h1,
+.wizard-info p {
+  color: inherit;
+}
+
+
+/* ---------- Wizard Header ---------- */
+.wizard-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;      
+  justify-content: center;   
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.wizard-img {
+  flex-shrink: 0;
+  width: 220px;
   border-radius: 12px;
-  margin: 1.5rem 0;
-  object-fit: cover;
+  border: 3px solid var(--accent, #d4af37);
   box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-  border: 3px solid #d4af37;
 }
 
-/* ---------- Wizard Info ---------- */
-.wizard-details h1 {
+.wizard-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.wizard-info h1 {
   font-size: 2.5rem;
+  font-family: "Cinzel Decorative", serif;
+  margin-bottom: 1rem;
+  color: var(--accent, #2c1a10);
+}
+
+.wizard-info p {
   margin-bottom: 0.5rem;
-  color: #2c1a10;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  font-family: "Cinzel Decorative", "Georgia", serif;
+  color: var(--accent, #2c1a10);
+  word-break: break-word; 
 }
 
-.wizard-details p {
-  font-size: 1.2rem;
-  margin: 0.4rem 0;
-  color: #4a3b2c;
+/* ---------- Wand Section ---------- */
+.wand-section {
+  margin-top: 2rem;
+  text-align: center;
 }
 
-/* ---------- House Color Borders ---------- */
-.wizard-details.gryffindor {
-  border-left: 8px solid #ae0001;
-}
-.wizard-details.slytherin {
-  border-left: 8px solid #2a623d;
-}
-.wizard-details.ravenclaw {
-  border-left: 8px solid #222f5b;
-}
-.wizard-details.hufflepuff {
-  border-left: 8px solid #ecb939;
-}
-
-/* ---------- Section Titles ---------- */
-.subsection-title h2,
-h3 {
+.wand-section h2 {
   font-family: "Cinzel Decorative", serif;
   font-size: 1.8rem;
-  margin: 1rem 0;
-  color: #2c1a10;
-  text-align: center;
-  border-bottom: 2px solid #d4af37;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent, #d4af37);
   display: inline-block;
   padding-bottom: 0.2rem;
 }
 
-/* ---------- Forms ---------- */
-.subsection-content {
-  margin: 1rem auto 2rem;
-  max-width: 500px;
-  text-align: left;
-  padding: 1.5rem;
-  border: 2px dashed #d4af37;
-  border-radius: 12px;
-  background: #fffdf6;
-}
-
-.subsection-content p {
-  margin: 0.6rem 0;
-}
-
-.subsection-content label {
-  font-weight: bold;
-  color: #3d2c1e;
-}
-
-.btn.submit {
-  background: linear-gradient(135deg, #d4af37, #b8860b);
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn.submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-}
-
-/* ---------- Wand Table ---------- */
-table {
+/* Wand Table */
+.wand-section table {
   width: 100%;
+  max-width: 500px;
+  margin: 1rem auto;
   border-collapse: collapse;
-  margin-top: 1.5rem;
-  background: #fefcf5;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid var(--accent, #d4af37);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
-thead {
-  background: #d4af37;
-  color: #fff;
-  font-family: "Cinzel Decorative", serif;
-  font-size: 1.2rem;
-}
-
-th, td {
+.wand-section th,
+.wand-section td {
+  border: 1px solid var(--accent, #d4af37);
   padding: 0.8rem;
-  border-bottom: 1px solid #ddd;
+  text-align: center;
+  word-break: break-word; 
+}
+
+.wand-section th {
+  background: rgba(255,255,255,0.2);
+  font-family: "Cinzel Decorative", serif;
+}
+
+/* Wand Actions */
+.wand-actions {
+  margin-top: 1rem;
   text-align: center;
 }
 
-tbody tr:nth-child(even) {
-  background: #f7f3e9;
+.wand-actions a {
+  background: var(--accent, #2c1a10);
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  margin: 0 0.3rem;
+  border-radius: 6px;
+  font-family: "Cinzel Decorative", serif;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
 }
 
-tbody tr:hover {
-  background: #fff3c6;
-  transition: background 0.2s ease;
+.wand-actions a:hover {
+  background: #fff;
+  color: var(--accent, #2c1a10);
+  transform: translateY(-2px);
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 700px) {
-  .wizard-container {
-    padding: 1rem;
-  }
-  .wizard-details img {
-    width: 100%;
-    max-width: 200px;
-  }
-  table, thead, tbody, th, td, tr {
-    display: block;
-    text-align: right;
-  }
-  th {
-    background: none;
-    color: #2c1a10;
-    text-align: left;
-  }
-  td {
-    padding: 0.5rem 0;
-    border: none;
-  }
+/* Add Wand Form */
+.wand-section form {
+  background: #fffdf6;
+  border: 2px solid var(--accent, #d4af37);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.wand-section form input,
+.wand-section form select {
+  width: 90%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 2px solid var(--accent, #d4af37);
+  border-radius: 6px;
+  font-family: "Garamond", serif;
+}
+
+.wand-section form button {
+  background: var(--accent, #2c1a10);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-family: "Cinzel Decorative", serif;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.wand-section form button:hover {
+  background: #fff;
+  color: var(--accent, #2c1a10);
+  transform: translateY(-2px);
+}
+
+/* ---------- Spellbook Card ---------- */
+.spellbook-card {
+  background: #fffdf6;
+  border: 3px solid var(--accent, #2c1a10);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Spellbook Header */
+.spellbook-card h2 {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--accent, #2c1a10);
+}
+
+/* Spell Grid */
+.spell-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  max-height: 300px;         
+  overflow-y: auto;          
+  padding-right: 0.5rem;
+}
+
+.spell-card {
+  background: #fffdf6;
+  border: 2px solid var(--accent, #d4af37);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spell-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.spell-card h4 {
+  font-family: "Cinzel Decorative", serif;
+  margin-bottom: 0.5rem;
+  color: var(--accent, #2c1a10);
+}
+
+/* Spell Form */
+.spell-form {
+  border-top: 2px dashed var(--accent, #d4af37);
+  padding-top: 1.5rem;
+}
+
+.spell-dropdown {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid var(--accent, #d4af37);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-family: "Garamond", serif;
+  background: #fff;
+}
+
+/* Buttons general style */
+.btn {
+  cursor: pointer;
+  font-family: "Cinzel Decorative", serif;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn.submit {
+  background: var(--accent, #2c1a10);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+}
+
+.btn.submit:hover {
+  background: #fff;
+  color: var(--accent, #2c1a10);
+  transform: translateY(-2px);
 }

@@ -12,9 +12,13 @@
 
 <section class="spell-controls">
   <form method="get" action="{% url 'spell-index' %}" class="search-form">
-    <input type="text" name="q" placeholder="Search for a spell..." />
-    <button type="submit" class="btn secondary">🔍 Search</button>
+    <input type="text" name="q" placeholder="Search for a spell..." value="{{ query }}">
+    <button type="submit" class="btn secondary">Search</button>
+    {% if query %}
+      <a href="{% url 'spell-index' %}" class="btn secondary">Show All Spells</a>
+    {% endif %}
   </form>
+</section>
 </section>
 
 <section class="card-container">
@@ -28,7 +32,6 @@
             {% csrf_token %}
             <input type="hidden" name="spell_name" value="{{ spell.name }}">
             <input type="hidden" name="spell_description" value="{{ spell.description }}">
-            <button type="submit" class="btn submit">✨Add to Spellbook✨ </button>
           </form>
         </div>
       </div>

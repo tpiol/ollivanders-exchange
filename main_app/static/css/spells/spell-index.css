@@ -36,9 +36,15 @@ body {
   border-radius: 8px 0 0 8px;
   background-color: #fffaf0;
   outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 
-.search-form button {
+.search-form input:focus {
+  border-color: #8b5e3c;
+  box-shadow: 0 0 8px rgba(139, 94, 60, 0.5);
+}
+
+.search-form button, .search-form a.btn {
   background: #4b2e2b;
   color: #f8f5e1;
   font-weight: bold;
@@ -46,11 +52,17 @@ body {
   border: none;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.search-form button:hover {
+.search-form button:hover, .search-form a.btn:hover {
   background: #8b5e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
 }
 
 /* ---------- Spell Cards ---------- */
@@ -68,12 +80,12 @@ body {
   padding: 1.5rem;
   box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
   position: relative;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .spell-card:hover {
   transform: translateY(-5px);
-  box-shadow: 6px 6px 16px rgba(0,0,0,0.3);
+  box-shadow: 6px 6px 16px rgba(0,0,0,0.35);
 }
 
 /* Card Content */
@@ -90,21 +102,41 @@ body {
   line-height: 1.4;
 }
 
-/* ---------- Card Actions ---------- */
+/* ---------- Card Actions (Buttons) ---------- */
 .card-actions {
   text-align: right;
 }
 
 .card-actions .btn.submit {
-  background: #6d281c;
+  background: linear-gradient(135deg, #6d281c, #9c3d2f);
   color: #fffaf0;
   border: none;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 .card-actions .btn.submit:hover {
-  background: #9c3d2f;
+  background: linear-gradient(135deg, #9c3d2f, #d4553f);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* ---------- Spellbook "Show All" Button ---------- */
+.card-actions .btn.show-all {
+  background: linear-gradient(135deg, #4b2e2b, #8b5e3c);
+  color: #fffaf0;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.card-actions .btn.show-all:hover {
+  background: linear-gradient(135deg, #8b5e3c, #b37b5a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
 }

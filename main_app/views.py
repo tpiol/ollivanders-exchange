@@ -8,6 +8,7 @@ from .forms import WandForm
 def home(request):
     return render(request, 'home.html')
 
+
 def about(request):
     return render(request, 'about.html')
 
@@ -16,13 +17,41 @@ def wizard_index(request):
     collected = Wizard.objects.filter(is_collected=True).order_by('name')
     return render(request, 'wizards/index.html', {'wizards': collected})
 
+
 def wizard_detail(request, wizard_id):
     wizard = Wizard.objects.get(id=wizard_id)
+
+    # Load spells from API if DB is empty
+    if Spell.objects.count() == 0:
+        url = 'https://hp-api.onrender.com/api/spells'
+        response = requests.get(url)
+        if response.status_code == 200:
+            for i in response.json():
+                if not Spell.objects.filter(name=i.get('name')).exists():
+                    Spell.objects.create(
+                        name=i.get('name', 'Unknown'),
+                        description=i.get('description', 'No description available')
+                    )
+
+    # Handle POST: add spell to wizard
+    if request.method == 'POST':
+        spell_id = request.POST.get('spell')
+        if spell_id:
+            spell = Spell.objects.get(id=spell_id)
+            wizard.spells.add(spell)
+            return redirect('wizard-detail', wizard_id=wizard_id)
+
     wand_form = WandForm()
-    return render(request, 'wizards/detail.html', {'wizard': wizard, 'wand_form': wand_form})
+    all_spells = Spell.objects.all().order_by('name')
+
+    return render(request, 'wizards/detail.html', {
+        'wizard': wizard,
+        'wand_form': wand_form,
+        'all_spells': all_spells,
+    })
+
 
 def choose_wizard(request):
-
     if Wizard.objects.count() == 0:
         url = 'https://hp-api.onrender.com/api/characters'
         response = requests.get(url)
@@ -48,71 +77,59 @@ def choose_wizard(request):
             return render(request, 'wizards/detail.html', {'wizard': wizard})
 
     return render(request, 'main_app/wizard_form.html', {'all_wizards': uncollected_wizards})
-    
+
 
 class WizardDelete(DeleteView):
     model = Wizard
     success_url = '/wizards/'
 
+
 def add_wand(request, wizard_id):
-    
     form = WandForm(request.POST)
-    
+
     if form.is_valid():
         new_wand = form.save(commit=False)
         new_wand.wizard_id = wizard_id
         new_wand.save()
     return redirect('wizard-detail', wizard_id=wizard_id)
 
+
 class WandUpdate(UpdateView):
     model = Wand
     fields = ['core', 'wood', 'length']
+
 
 class WandDelete(DeleteView):
     model = Wand
     success_url = '/wizards/'
 
-# def spell_index(request):
-#     spells = Spell.objects.all()
-    
-#     if 'name' in request.GET:
-#         name = request.GET['name']
-#         url = 'https://hp-api.onrender.com/api/spells' 
-#         response = requests.get(url)
-#         data = response.json()
-#         spells = data['spells']
-
-#         for i in spells:
-#             spell_data = Spell(
-#                 name = i['spell'],
-#                 description = i['description']
-#             )
-#             spell_data.save()
-#             all_spells = Spell.objects.all().order_by('-id')
-
-#         return render(request, 'spells/index.html', {'spells': spells})
 
 def spell_index(request):
-
     if Spell.objects.count() == 0:
-        url = 'https://hp-api.onrender.com/api/spells' 
+        url = 'https://hp-api.onrender.com/api/spells'
         response = requests.get(url)
         if response.status_code == 200:
             for i in response.json():
                 if not Spell.objects.filter(name=i.get('name')).exists():
                     Spell.objects.create(
                         name=i.get('name', 'Unknown'),
-                        description= i.get('description')
+                        description=i.get('description')
                     )
 
-    uncollected_spells = Spell.objects.filter(is_collected=False).order_by('name')
+    
+    query = request.GET.get('q', '')  
+    if query:
+        all_spells = Spell.objects.filter(name__icontains=query)
+    else:
+        all_spells = Spell.objects.filter(is_collected=False).order_by('name')
 
+   
     if request.method == 'POST':
         spell_id = request.POST.get('spell')
         if spell_id:
             spell = Spell.objects.get(id=spell_id)
             spell.is_collected = True
             spell.save()
-            return render(request, 'spells/index.html', {'spell': spell})
+            all_spells = Spell.objects.filter(is_collected=False).order_by('name')
 
-    return render(request, 'spells/index.html', {'all_spells': uncollected_spells})
+    return render(request, 'spells/index.html', {'all_spells': all_spells, 'query': query})

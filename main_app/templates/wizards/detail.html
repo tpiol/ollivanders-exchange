@@ -2,77 +2,96 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/wizards/wizard-detail.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/wizards/wizard-detail.css' %}" />
 {% endblock %}
 
 {% block content %}
-<main> 
-  <section class="wizard-container">
+<main class="wizard-page"> 
 
-    
-    <div class="wizard-details {{ wizard.house|lower }}">
-      <h1>{{ wizard.name }}</h1>
-      <p><img src="{{ wizard.image }}" alt="{{ wizard.name }}"/></p>
-      <p>Date of Birth: {{ wizard.dateOfBirth }}</p>
-      <p>House: {{ wizard.get_house_display }}</p>
-      <p>Patronus: {{ wizard.patronus }}</p>
+
+  <section class="wizard-card {{ wizard.get_house_display|lower }}">
+    <div class="wizard-header">
+      <img src="{{ wizard.image }}" alt="{{ wizard.name }}" class="wizard-img"/>
+      <div class="wizard-info">
+        <h1>{{ wizard.name }}</h1>
+        <p><strong>Date of Birth:</strong> {{ wizard.dateOfBirth }}</p>
+        <p><strong>House:</strong> {{ wizard.get_house_display }}</p>
+        <p><strong>Patronus:</strong> {{ wizard.patronus }}</p>
+      </div>
     </div>
 
-   
-    <div class="wand-container">
-      <section class="wands">
+  
+    <div class="wand-section">
+      <h2>Wand</h2>
 
-   
-
-        {% if wizard.wand_set.exists %}
-          <table>
-                 <h2>Wand</h2>
-            <thead>
+      {% if wizard.wand_set.exists %}
+        <table>
+          <thead>
+            <tr>
+              <th>Wood</th>
+              <th>Core</th>
+              <th>Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for wand in wizard.wand_set.all %}
               <tr>
-                <th>Wood</th>
-                <th>Core</th>
-                <th>Length</th>
-                <th>edit</th>
-                <th>delete</th>
+                <td>{{ wand.get_wood_display }}</td>
+                <td>{{ wand.get_core_display }}</td>
+                <td>{{ wand.length }}"</td>
               </tr>
-            </thead>
-            <tbody>
-              {% for wand in wizard.wand_set.all %}
-                <tr>
-                  <td>{{ wand.get_wood_display }}</td>
-                  <td>{{ wand.get_core_display }}</td>
-                  <td>{{ wand.length }}"</td>
-                  <td><div class="wand-actions">
-                 <a href="{% url 'wand-update' wand.id %}" class="btn danger">edit</a>
-                </div></td>
-                  <td> <div class="wand-actions">
-                 <a href="{% url 'wand-delete' wand.id %}" class="btn danger">Delete</a>
-                </div></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-        
-          </table>
-        {% else %}
-          <div class="subsection-content">
+            {% endfor %}
+          </tbody>
+        </table>
 
-            <h3>✨ No wand assigned yet! Add a Wand</h3>
-            <form
-              action="{% url 'add-wand' wizard.id %}"
-              method="post"
-              class="subsection-content"
-              autocomplete="off"
-            >
-              {% csrf_token %} 
-              {{ wand_form.as_p }}
-              <button type="submit" class="btn submit">Add Wand</button>
-            </form>
-          </div>
-        {% endif %}
+        <div class="wand-actions">
+          {% for wand in wizard.wand_set.all %}
+            <a href="{% url 'wand-update' wand.id %}" class="btn edit">Edit</a>
+            <a href="{% url 'wand-delete' wand.id %}" class="btn danger">Delete</a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-msg">✨ No wand assigned yet!</p>
+        <form action="{% url 'add-wand' wizard.id %}" method="post" autocomplete="off">
+          {% csrf_token %} 
+          {{ wand_form.as_p }}
+          <button type="submit" class="btn submit">Add Wand</button>
+        </form>
+      {% endif %}
+    </div>
+  </section>
 
-      </section>
+
+  <section class="spellbook-card">
+    <h2>Spellbook</h2>
+
+    <h3>Known Spells</h3>
+    <div class="spell-grid">
+      {% for spell in wizard.spells.all %}
+        <div class="spell-card">
+          <h4>{{ spell.name }}</h4>
+          <p>{{ spell.description }}</p>
+        </div>
+      {% empty %}
+        <p class="empty-msg">✨ No spells learned yet.</p>
+      {% endfor %}
     </div>
 
+    <div class="spell-form">
+      <h3>Learn a New Spell</h3>
+      <form action="" method="post">
+        {% csrf_token %}
+        <select name="spell" class="spell-dropdown">
+          {% for spell in all_spells %}
+            <option value="{{ spell.id }}">{{ spell.name }} – {{ spell.description }}</option>
+          {% empty %}
+            <option disabled>No spells available</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn submit">Learn Spell</button>
+      </form>
+    </div>
   </section>
+
 </main>
 {% endblock %}
