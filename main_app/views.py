@@ -81,7 +81,7 @@ def choose_wizard(request):
             wizard.is_collected = True
             wizard.user = request.user
             wizard.save()
-            return render(request, 'wizards/detail.html', {'wizard': wizard})
+            return redirect('wizard-detail', wizard_id=wizard_id)
 
     return render(request, 'main_app/wizard_form.html', {'all_wizards': uncollected_wizards})
 
