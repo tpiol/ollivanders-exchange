@@ -68,7 +68,8 @@ def choose_wizard(request):
                         image=i.get('image', ''),
                         house=i.get('house', '')[:1].upper() if i.get('house') else 'G',
                         dateOfBirth=i.get('dateOfBirth') or 'Unknown',
-                        patronus=i.get('patronus', 'Unknown')
+                        patronus=i.get('patronus', 'Unknown'),
+                        user = (request.user)
                     )
 
     uncollected_wizards = Wizard.objects.filter(is_collected=False).order_by('name')
