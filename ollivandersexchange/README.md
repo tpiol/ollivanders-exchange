@@ -1,4 +1,4 @@
-![wizards-page]()
+![wizards-page](../images/ollivanders.png)
 
 ### Application Name: *Ollivander's Exchange*
 
